@@ -1,0 +1,43 @@
+@import '@/assets/css/global';
+//改变背景颜色
+.ant-menu{
+    background-color: @sider-theme !important;
+}
+//字体改为白色
+.ant-menu-item span,.ant-menu-submenu span
+,.ant-menu-submenu .ant-menu-submenu-arrow{
+    color: #fff !important;
+}
+.ant-menu-inline .ant-menu-item, .ant-menu-inline .ant-menu-submenu-title {
+    width: calc(100%) !important;
+}
+//submenu被选中时颜色
+// .ant-menu-submenu-selected .ant-menu-submenu-title span{
+//     // color: @sider-menu-select !important;
+// }
+//menu-item被选中时颜色
+.ant-menu-item-selected span,.ant-menu-item-selected span>svg{
+    color: @sider-menu-select !important;
+}
+//被选中时背景颜色
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: transparent !important;
+}
+
+//hover && active
+.ant-menu-light .ant-menu-item:hover,
+.ant-menu-light .ant-menu-item-active span{
+    color: @sider-menu-select !important;
+}
+
+.ant-menu-vertical .ant-menu-item::after, .ant-menu-vertical-left .ant-menu-item::after, .ant-menu-vertical-right .ant-menu-item::after, .ant-menu-inline .ant-menu-item::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-right: 3px solid transparent !important;
+    transform: scaleY(0.0001);
+    opacity: 0;
+    transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+    content: '';
+}
