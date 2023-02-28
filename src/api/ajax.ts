@@ -26,7 +26,7 @@ axios.interceptors.response.use(
                 Imessage.error(response.data.message);
                 return;
             default:
-                Imessage.error(response.data.message?response.data.message:'系统出错');
+                Imessage.error(response.data.message ? response.data.message : '系统出错');
                 return;
         }
     },

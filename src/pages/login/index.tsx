@@ -15,10 +15,6 @@ interface Props extends ReduxProps {}
 const Login: FC<Props> = ({ storeData: { userInfo = {} }, setStoreData }) => {
     const history = useHistory();
 
-    useEffect(() => {
-        console.log(userInfo);
-    }, [userInfo]);
-
     // 触发登录方法
     const onFinish = async (values: any) => {
         const { userName, password } = values;

@@ -55,7 +55,6 @@ const Setting: FC<Props> = props => {
 
     //表单提交回调函数
     const onFinish = async (value: any) => {
-        console.log(value);
         form.validateFields().then(values => {
             console.log(values);
         });
@@ -70,7 +69,6 @@ const Setting: FC<Props> = props => {
 
     //上传upload回调函数
     const handleChange = ({ file }: { file: UploadFile }) => {
-        console.log(file);
         switch (file.status) {
             case 'error':
                 Imessage.warning('上传失败');
@@ -94,8 +92,8 @@ const Setting: FC<Props> = props => {
 
     return (
         <div className="setting container">
-            <Tabs defaultActiveKey="1" onChange={onChange}>
-                <TabPane tab="设置" key="1">
+            <Tabs defaultActiveKey="user_info" onChange={onChange}>
+                <TabPane tab="设置" key="user_info">
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 100 }}>
                         <div style={{ width: '30%' }}>
                             <Form
@@ -168,7 +166,10 @@ const Setting: FC<Props> = props => {
                         </div>
                     </div>
                 </TabPane>
-                <TabPane tab="关于我" key="2">
+                <TabPane tab="修改密码" key="emit_pw">
+                    修改密码
+                </TabPane>
+                <TabPane tab="关于我" key="about">
                     关于我
                 </TabPane>
             </Tabs>

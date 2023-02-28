@@ -4,9 +4,9 @@ import { ColumnsType } from 'antd/lib/table';
 import dayjs from 'dayjs';
 import MyTable from '@/component/Common/table';
 import * as type from '@/models/category';
-import MyModalForm from '@/component/Common/modalForm';
 import { addOrUpdateCategory, deleteCategoryList, getCategory } from '@/api';
 import './index.less';
+import MyModalForm from '@/component/Common/modalForm';
 interface Props {}
 
 const Category: FC<Props> = props => {
@@ -21,7 +21,7 @@ const Category: FC<Props> = props => {
     const modalFormConfig = [
         {
             key: 'categoryName',
-            name:'categoryName',
+            name: 'categoryName',
             label: 'Category',
             rules: [{ required: true, message: 'Please input the categoryname!' }],
             slot: <Input />,
@@ -36,7 +36,7 @@ const Category: FC<Props> = props => {
             align: 'center',
         },
         {
-            title:'文章数量',
+            title: '文章数量',
             key: 'articleCount',
             dataIndex: 'articleCount',
             align: 'center',
@@ -63,7 +63,7 @@ const Category: FC<Props> = props => {
                                 modalFormRef.current.setFormValue({
                                     categoryName,
                                 });
-                                modalFormRef.current.setExtraProps({id})
+                                modalFormRef.current.setExtraProps({ id });
                             }}
                         >
                             Edit
@@ -91,7 +91,7 @@ const Category: FC<Props> = props => {
     const getCategoryList = async (tableParams: any) => {
         setLoading(true);
         try {
-            const { data,message } = await getCategory({ ...tableParams });
+            const { data, message } = await getCategory({ ...tableParams });
             const {
                 dataList: { contentList, count },
             } = data;
@@ -146,7 +146,7 @@ const Category: FC<Props> = props => {
 
     //addBtn回调
     const onAddBtnChange = () => {
-        modalFormRef.current.setExtraProps({})
+        modalFormRef.current.setExtraProps({});
         setVisible(true);
     };
 
