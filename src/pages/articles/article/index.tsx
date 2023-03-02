@@ -23,8 +23,10 @@ import { isEmpty, typeConverse } from '@/assets/js/publicFunc';
 import { getArticleById, getArticleOptions, saveOrUpdateArticle, uploadImg } from '@/api';
 import './index.less';
 import 'md-editor-rt/lib/style.css';
+import { debounce } from '@/utils/debounce';
 const { Dragger } = Upload;
 const { Option } = Select;
+
 interface Props extends ReduxProps {}
 
 const Article: FC<Props> = ({ storeData: { editArticleId } }) => {
@@ -146,8 +148,8 @@ const Article: FC<Props> = ({ storeData: { editArticleId } }) => {
                 >
                     <Dragger
                         name="file"
-                        action="/admin/article/uploadImg"
-                        onChange={onUploadChange}
+                        action="/api/admin/article/uploadImg"
+                        onChange={debounce(onUploadChange, 1000)}
                     >
                         {!articleInfo.articleCover || articleInfo.articleCover === '' ? (
                             <div>
@@ -247,7 +249,6 @@ const Article: FC<Props> = ({ storeData: { editArticleId } }) => {
 
     //modal create回调
     const onCreate = async (values: CommonObjectType) => {
-        console.log(values);
         try {
             try {
                 if (isEmpty(text) || isEmpty(articleInfo.articleTitle)) {
@@ -265,7 +266,6 @@ const Article: FC<Props> = ({ storeData: { editArticleId } }) => {
                 articleContent: text,
                 isTop: isTop ? 1 : 0,
             };
-            console.log(article);
             const { message } = await saveOrUpdateArticle(article);
             setVisible(false);
             Imessage.info(message);
