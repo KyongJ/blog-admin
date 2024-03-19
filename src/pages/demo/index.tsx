@@ -1,39 +1,63 @@
 import React, { FC, useState } from 'react';
-import {CSVLink} from '@/common/react-csv';
+import { CSVLink } from '@/common/react-csv';
+import { InboxOutlined } from '@ant-design/icons';
+import { Button, Form, Input, Modal, Select, Space } from 'antd';
+import Dragger from 'antd/lib/upload/Dragger';
 
 const Demo: FC = () => {
-    const [count, setCount] = useState<number>(0);
+    const [visible, setVisible] = useState(false);
+    const { TextArea } = Input;
     // const [name, setName] = useState<string>('');
-    console.log('count', count);
-    // console.log('name', name);
-    const handleClickAsync = () => {
-        console.log('异步执行');
-        setTimeout(() => {
-            setCount(count => count + 1);
-            console.log(count);
-        }, 1000);
+
+    const handleOk = () => {
+        setVisible(false);
     };
 
-    const headers = [
-        { label: 'First Name', key: 'firstname' },
-        { label: 'Last Name', key: 'lastname' },
-        { label: 'Email', key: 'email' },
-    ];
-    const data = [
-        { firstname: 'Ahmed', lastname: '"Tomi","Kyong"', email: 'ah@smthing.co.com' },
-        { firstname: 'Raed', lastname: 'Labes', email: 'rl@smthing.co.com' },
-        { firstname: 'Yezzi', lastname: 'Min l3b', email: 'ymin@cocococo.com' },
-    ];
+    const handleCancel = () => {
+        setVisible(false);
+    };
     return (
         <div>
-            {console.log('render')}
-            <div>count:{count}</div>
-            <button onClick={handleClickAsync}>Increase async</button>
-            {/* <button onClick={handleClickSync}>Increase sync</button> */}
-            <CSVLink data={data} headers={headers} filename={'demo.csv'}>
-                Download me
-            </CSVLink>
-            ;
+            <Button type="primary" onClick={() => setVisible(!visible)}>
+                测试
+            </Button>
+            <Modal width={800} visible={visible} onOk={handleOk} onCancel={handleCancel}>
+                <div style={{ fontWeight: 900, fontSize: 24 }}>创建新项目</div>
+                <span>支持的文件格式:JPG、PNG、GIF、SVF,最大不超过100MB</span>
+                <div>
+                    <Dragger>
+                        <p className="ant-upload-drag-icon">
+                            <InboxOutlined />
+                        </p>
+                        <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                    </Dragger>
+                </div>
+                <div>
+                    <Form name="validateOnly" layout="vertical" autoComplete="off">
+                        <Form.Item name="name" label="名称" rules={[{ required: true }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name="age" label="外部链接" rules={[{ required: true }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name="age" label="关键词" rules={[{ required: true }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name="age" label="区块链网络" rules={[{ required: true }]}>
+                            <Select />
+                        </Form.Item>
+                        <Form.Item name="age" label="介绍信息" rules={[{ required: true }]}>
+                            <TextArea />
+                        </Form.Item>
+                        <Form.Item>
+                            <Space>
+                                <Button>创建</Button>
+                                <Button htmlType="reset">重置</Button>
+                            </Space>
+                        </Form.Item>
+                    </Form>
+                </div>
+            </Modal>
         </div>
     );
 };
