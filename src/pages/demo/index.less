@@ -1,0 +1,40 @@
+.steps {
+    display: flex;
+    margin-bottom: 20px;
+
+    .step-box {
+        display: inline-block;
+
+        .step {
+            background-color: #dce3e8;
+            color: #768aa2;
+            text-align: center;
+            line-height: 48px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .active {
+            background-color: #0068b7;
+            color: #ffffff;
+        }
+
+        .first {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            -webkit-clip-path: polygon(0 0, 98% 0, 100% 50%, 98% 100%, 0 100%);
+            clip-path: polygon(0 0, 98% 0, 100% 50%, 98% 100%, 0 100%);
+        }
+
+        .both{
+            margin-left: -3px;
+            -webkit-clip-path: polygon(0 0, 98% 0, 100% 50%, 98% 100%, 0 100%, 2% 50%);
+            clip-path: polygon(0 0, 98% 0, 100% 50%, 98% 100%, 0 100%, 2% 50%);
+        }
+    }
+}
+
+.upload-content{
+    background-color: #fff;
+    padding: 50px;
+}
